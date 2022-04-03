@@ -1,0 +1,81 @@
+{% load widget_tweaks %}
+
+<nav class="columns" id="top-container">
+    <div class="column is-desktop is-8 is-offset-2" id="top-content">
+        <nav class="navbar" id="top-navbar" role="navigation" aria-label="top navigation">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="https://bulma.io">
+                            Vmodels
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    {% if request.user.is_authenticated %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link is-arrowless">
+                            {{ request.user.username }}
+                        </a>
+                        <div class="navbar-dropdown is-boxed is-right">
+                            <a class="navbar-item" href="{% url 'profiles:detail' request.user.profile.slug %}">
+                            Profil
+                            </a>
+                            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+                            Wiadomości
+                            </a>
+                            <a class="navbar-item" href="{% url 'profiles:settings' %}">
+                            Ustawienia
+                            </a>
+                            <a class="navbar-item" href="{% url 'logout' %}">
+                            Wyloguj
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a href="{% url 'register' %}" class="button is-primary">
+                                <strong>Register</strong>
+                            </a>
+                            <a href="{% url 'login' %}" class="button is-light">
+                                Login
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+</nav>
+
+<nav class="columns" id="menu-container">
+    <div class="column is-desktop is-8 is-offset-2" id="menu-content">
+        <nav class="navbar" id="menu-navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="{% url 'home_view' %}" class="navbar-item">Najnowsze</a>
+                    {% if request.user.is_authenticated and request.user.is_staff %}
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+</nav>
+
+<!-- BREADCRUMB -->
+
+<div id="bradecumb">
+    ///
+</div>
+
+

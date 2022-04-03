@@ -1,0 +1,66 @@
+.modal-card{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+#top-container {
+  margin-bottom: 0;
+  background: #badc58;
+  /* background: linear-gradient(90deg, rgba(255,234,167,1) 0%, rgba(250,177,160,1) 92%, rgba(255,186,170,1) 100%); */
+  
+}
+#top-content
+{
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+#menu-content{
+  padding-top: 0;
+  padding-bottom: 0;
+  background: transparent;
+}
+#top-navbar, #top-menu, #menu-navbar, #menu-content{
+  background: transparent;
+}
+#top-navbar {
+  z-index:10000;
+}
+#footer {
+  background-color: #f1f1f1;
+}
+#menu-container {
+  background: #f1f1f1;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.field-label {
+  flex-grow: 1.2;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+input {
+  outline: none;
+
+}
+
+.dropdown-content {
+  max-height: 17.3em;
+  overflow: auto;
+}
+
+a.dropdown-item{
+  display: block;
+}
+
+a.dropdown-item:focus {
+  background-color: #f5f5f5;
+  color: #0a0a0a;
+}

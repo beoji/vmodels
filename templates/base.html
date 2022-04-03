@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/htmx.org@1.6.0"></script>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+	{% include 'snippets/navbar.html' %}
+	
+	{% block hero %}
+	{% endblock %}
+
+	<section class="section">
+		<div class="container">
+			{% if messages %}
+		    {% for message in messages %}
+
+		    <article class="message 
+		    {% if message.tags == 'success' %}is-success{% elif message.tags == 'error' %}
+		    is-danger{% endif %}">
+			<div class="message-body">
+				<button class="delete" aria-label="delete" style="float:right"></button>
+			  	{{ message }}
+			  </div>
+			</article>
+
+		    {% endfor %}
+			{% endif %}
+
+
+			{% block content %}
+			{% endblock %}
+		</div>
+	</section>
+
+	<svg class="curve-container__curve curve-three" viewBox="10 -20 1870 210" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+		<path class="plain fill-" fill="#eeeeee" d="M977.9,76.2 C475.2,-17.4 0.2,132.5 0.2,132.5 L0.2,275.5 L1891.3,275.5 L1891.3,0.7 C1891.3,0.7 1480.6,169.8 977.9,76.2 Z" id="Path"></path> -->
+	</svg>
+
+	{% include 'snippets/footer.html' %}
+
+	{% block script %}
+	{% endblock %}
+
+	{% load static %}
+	<script src="{% static 'js/modal.js' %}"></script>
+
+</body>
+</html>

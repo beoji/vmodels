@@ -1,0 +1,62 @@
+{% if locations %}
+
+<div id="location-dropdown" class="dropdown-menu" style="width:100%; position:relative; display:inline-block">
+    <div class="dropdown-content">
+    {% for location in locations %}
+        <a id="" class="dropdown-item" onclick="changeValue(this)" tabindex=10>{{location}}</a>
+    {% endfor %}
+    </div>
+</div>
+
+<script>
+
+   function changeValue(o){
+        document.getElementById('id_location').value=o.innerHTML;
+        document.getElementById('location-dropdown').remove();
+    }
+
+    var matches = document.querySelectorAll('div.dropdown-content > a');
+    var i = -1;
+    var focused;
+
+    document.onkeydown = function(e) {
+        switch (e.keyCode) {
+            case 40:
+                e.preventDefault();
+                if (i < matches.length - 1) {
+                    i++;
+                }
+                matches[i].focus();
+                focused = matches[i];
+                break;
+            case 38:
+                e.preventDefault();
+                if (i > 0) {
+                    i--;
+                }
+                matches[i].focus();
+                focused = matches[i];
+                break;
+            case 13:
+                e.preventDefault();
+                changeValue(matches[i]);
+                document.getElementById('id_birth_date').focus();
+                break;
+        }
+    };
+
+    $('body').click(function(e) {
+        if ($(e.target).closest('.dropdown-content').length === 0) {
+            document.getElementById('location-dropdown').remove();
+        }
+    });
+
+//    $(':not(#country)').click(function() {
+//        $('#countrylist').hide();
+//    });
+
+</script>
+
+{% endif %}
+
+

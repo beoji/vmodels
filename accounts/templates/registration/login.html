@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="columns is-centered">
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+    <form class="column is-full-mobile is-4-tablet" method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <ul>
+            {% for error in form.non_field_errors %}
+                <li class="tag is-danger is-light">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% for field in form.visible_fields %}
+
+        <div class="field">
+            <label class="label">{{ field.label_tag }}</label>
+            {% for error in field.errors %}
+
+            <p class="help is-danger">{{ error }}</p>
+
+            {% endfor %}
+            <div class="control">
+                {% render_field field class="input" %}
+            </div>
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+        <div class="field is-grouped submit-buttons">
+            <div class="control">
+                <input type="submit" class="button is-link" value="Login">
+            </div>
+            <div class="control">
+                <a href="{% url 'password_reset' %}">Lost password?</a>
+            </div>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

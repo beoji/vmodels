@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div class="columns">
+        <div class="column is-offset-2 is-8">
+
+            <figure class="image">
+                <img src="{{ photo.photo.url }}" alt="{{ photo.description }}">
+            </figure>
+            
+            <p>Uploaded by: <a href="{% url 'profiles:detail' photo.profile.slug %}">{{ photo.profile.user.username }}</a></p>
+            <p>{{ photo.profile.get_profession_display }}</p>
+            <p>Uploaded at: {{ photo.uploaded_at }}</p>
+
+
+            <p>Kategoria: {{ photo.get_genre_display }}</p>
+            <p>Wyswietlen: {{ photo.visited }}</p>
+            
+        </div>
+    </div>
+
+{% endblock %}

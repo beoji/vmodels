@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="columns is-centered">
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <form class="column is-full-mobile is-10-tablet is-8-desktop is-6-widescreen is-5-fullhd" 
+        method="post" 
+        novalidate 
+        autocomplete="off">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <ul>
+            {% for error in form.non_field_errors %}
+                <li class="tag is-danger is-light">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% for field in form.visible_fields %}
+
+        <div class="field is-horizontal">
+
+            <div class="field-label is-normal">
+                <label class="label">{{ field.label_tag }}</label>
+            </div>
+
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                    {% if field.name == "location" %}
+                        {% render_field field class="input" %}
+                        <div id="location-results" style="position:absolute; width: 100%;">
+
+                        </div>
+                    {% else %}
+                        {% render_field field class="input" %}
+                    {% endif %}
+                    </div>
+
+                    {% if field.help_text %}
+                    <p class="help">{{ field.help_text }}</p>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                    <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        {% for field in form.hidden_fields %}
+
+        <div class="field">
+            <div class="control">
+                {% render_field field class="input" %}
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button is-link">Zapisz</button>
+                    </div>
+                    <div class="control">
+                        <a class="button is-link is-light" href = "{% url 'profile_view' %}">Anuluj</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

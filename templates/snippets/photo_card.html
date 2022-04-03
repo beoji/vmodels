@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="" style="display:flex">
+    {% if photo %}
+    <a href="{% url 'photos:detail' photo.pk %}">
+    <div class="card">
+        <div class="card-image">
+            <figure class="image">
+                <img src="{{ photo.thumbnail.url }}" alt="Placeholder image">
+            </figure>
+        </div>
+        <div class="card-content">
+            <h5 class="title is-6">{{ photo.profile.user.username }}</h5>
+            {% if photo.profile.profession %}<div>{{ photo.profile.get_profession_display }}</div>{% endif %}
+        </div>
+    </div>
+    </a>
+    {% endif %}
+</div>

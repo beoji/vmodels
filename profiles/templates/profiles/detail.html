@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block hero %}
+    <section class="hero is-large is-info">
+        <div class="hero-body">
+            <p class="title">
+            {{ profile.user.first_name }} {{ profile.user.last_name }}
+            </p>
+            <p class="subtitle">
+            {{ profile.get_profession_display }}
+            </p>
+        </div>
+    </section>
+{% endblock hero %}
+
+{% block content %}
+
+    {% if is_my_profile %}
+    moj profil
+    {% endif %}
+    <div class="columns">
+        <div class="column is-two-fifths">
+            <div class="card block">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                    <img src="{{ profile.profile_photo.photo.url }}" alt="{{ photo.description }}">
+                    </figure>
+                </div>
+            </div>
+            <div>
+            <p class="subtitle is-5">About me</p>
+            <hr>
+            <div>{{ profile.bio }}</div>
+            </div>
+        </div>
+        <div class="column">
+            
+        </div>
+    </div>
+
+    <div class="columns">
+        {% for photo in profile.photos.all %}
+		    {% include 'snippets/photo_card.html' with photo=photo %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

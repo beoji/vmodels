@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tr><td>{{ request.user.username }}</td></tr>
+    <tr><td>{{ request.user.email }}</td></tr>
+    <tr><td>{{ request.user.date_joined }}</td></tr>
+    </table>
+
+    <div class="control">
+        <a href="{% url 'photos:upload' %}">Dodaj zdjecie</a>
+    </div>
+    <div class="control">
+        <a href="{% url 'profiles:update' %}">Edytuj profil</a>
+    </div>
+
+{% endblock %}
